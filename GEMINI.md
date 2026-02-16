@@ -15,7 +15,6 @@
 
 ## General Instructions for the code
 
-- Use React components to create components that can be reused.
 - When you generate new TypeScript code, follow the existing coding style.
 - Ensure all new functions and classes have JSDoc comments.
 - Prefer functional programming paradigms where appropriate.

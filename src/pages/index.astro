@@ -1,41 +1,11 @@
 ---
-import AppLayout from "../layouts/AppLayout.astro";
-import Sidebar from "../components/Sidebar.jsx";
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<AppLayout>
-  <div slot="sidebar">
-    <Sidebar client:load />
-  </div>
-  <div>
-    <h1 class="text-3xl font-bold mb-4" id="tool-title">Select a tool</h1>
-    <div id="tool-content"></div>
-  </div>
-</AppLayout>
-
-<script>
-  import React from "react";
-  import ReactDOM from "react-dom/client";
-
-  document.addEventListener("select-tool", async (event) => {
-    const tool = event.detail;
-    const toolContent = document.getElementById("tool-content");
-    const toolTitle = document.getElementById("tool-title");
-
-    if (toolContent && toolTitle) {
-      toolContent.classList.add("slide-fade-out");
-
-      setTimeout(async () => {
-        toolTitle.innerText = tool.name;
-        const component = (await import(`../components/${tool.component}.jsx`)).default;
-        const root = ReactDOM.createRoot(toolContent);
-        root.render(React.createElement(component));
-        toolContent.classList.remove("slide-fade-out");
-        toolContent.classList.add("slide-fade-in");
-        setTimeout(() => {
-          toolContent.classList.remove("slide-fade-in");
-        }, 300);
-      }, 300);
-    }
-  });
-</script>
+<Layout>
+	<Welcome />
+</Layout>

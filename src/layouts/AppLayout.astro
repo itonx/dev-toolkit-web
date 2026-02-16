@@ -1,0 +1,23 @@
+---
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Dev Toolkit</title>
+  </head>
+  <body class="bg-[#202833] text-white">
+    <div class="flex h-screen">
+      <aside class="w-64 bg-[#1b222c] p-4">
+        <slot name="sidebar" />
+      </aside>
+      <main class="flex-1 p-8">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>

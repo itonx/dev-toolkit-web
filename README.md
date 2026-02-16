@@ -27,7 +27,7 @@ The following models were tested:
 - GPT-5.2-Codex
 - GPT-5.3-Codex
 
-> Gemini CLI 0.28.2 Auto: Let Gemini CLI decide the best model for the task -> gemini-2.5-pro, gemini-2.5-flash
+> Gemini CLI 0.28.2 Auto: Let Gemini CLI decide the best model for the task -> gemini-2.5-pro, gemini-3-pro-preview, gemini-2.5-flash, and gemini-3-flash-preview
 
 # Context
 

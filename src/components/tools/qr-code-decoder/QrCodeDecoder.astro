@@ -1,0 +1,46 @@
+---
+import jsQR from 'jsqr';
+---
+<div id="qr-code-decoder">
+  <div class="flex flex-col space-y-4">
+    <div>
+      <label for="qr-file-input" class="block text-sm font-medium text-light-accent dark:text-dark-muted">QR Code Image</label>
+      <input type="file" id="qr-file-input" accept="image/*" class="w-full text-light-accent dark:text-dark-muted" />
+    </div>
+    <div id="result-container" class="mt-4 result-pop-in">
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const qrFileInput = document.getElementById('qr-file-input');
+    const resultContainer = document.getElementById('result-container');
+
+    qrFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            context.drawImage(img, 0, 0, img.width, img.height);
+            const imageData = context.getImageData(0, 0, img.width, img.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height);
+            if (code) {
+              resultContainer.innerHTML = `<textarea readOnly class="w-full p-2 border rounded bg-light-surface dark:bg-dark-surface text-light-accent dark:text-dark-muted border-light-border dark:border-dark-border" rows="4">${code.data}</textarea>`;
+            } else {
+              resultContainer.innerHTML = `<div class="p-4 text-red-700 bg-red-100 border border-red-400 rounded">Could not decode QR code.</div>`;
+            }
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  });
+</script>

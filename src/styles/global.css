@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+.result-pop-in {
+  animation: pop-in 0.3s ease-in-out;
+}
+
+@keyframes pop-in {
+  from {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

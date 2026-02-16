@@ -1,0 +1,37 @@
+---
+import * as QRCode from 'qrcode';
+---
+<div id="qr-code-generator">
+  <div class="flex flex-col space-y-4">
+    <div>
+      <label for="qr-input" class="block text-sm font-medium text-light-accent dark:text-dark-muted">QR Code Content</label>
+      <input type="text" id="qr-input" class="w-full p-2 border rounded bg-light-surface dark:bg-dark-surface text-light-accent dark:text-dark-muted border-light-border dark:border-dark-border" />
+    </div>
+    <button id="generate-btn" class="bg-light-accent dark:bg-dark-accent text-white font-bold py-2 px-4 rounded shadow-glow">
+      Generate QR Code
+    </button>
+    <div id="result-container" class="mt-4 result-pop-in">
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const generateBtn = document.getElementById('generate-btn');
+    const qrInput = document.getElementById('qr-input');
+    const resultContainer = document.getElementById('result-container');
+
+    generateBtn.addEventListener('click', () => {
+      if (qrInput.value) {
+        QRCode.toCanvas(qrInput.value, { width: 256 }, (err, canvas) => {
+          if (err) {
+            resultContainer.innerHTML = `<div class="p-4 text-red-700 bg-red-100 border border-red-400 rounded">${err}</div>`;
+          } else {
+            resultContainer.innerHTML = '';
+            resultContainer.appendChild(canvas);
+          }
+        });
+      }
+    });
+  });
+</script>

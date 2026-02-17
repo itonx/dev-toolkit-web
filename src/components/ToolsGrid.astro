@@ -1,0 +1,10 @@
+---
+import ToolCard from './ToolCard.astro';
+
+const currentPath = Astro.url.pathname;
+---
+
+<div class="grid grid-cols-2 gap-4">
+  <ToolCard title="GUID Generator" href="/guid-generator" active={currentPath === '/guid-generator'} />
+  <ToolCard title="Base64 Encoder" href="/base64-encoder" active={currentPath === '/base64-encoder'} />
+</div>

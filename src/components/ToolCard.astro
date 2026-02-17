@@ -1,0 +1,22 @@
+---
+import Ripple from './Ripple';
+
+export interface Props {
+  title: string;
+  href: string;
+  active?: boolean;
+}
+
+const { title, href, active } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    "relative overflow-hidden bg-[#2a3442] border border-[#344154] rounded-md p-4 text-white text-center hover:bg-[#344154] transition-colors",
+    { 'active': active }
+  ]}
+>
+  {title}
+  <Ripple client:load />
+</a>

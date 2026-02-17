@@ -113,9 +113,18 @@ These are interesting results observed during the execution of each model.
 - The model created `.astro` files for the components, it couldn't infer that `React` was a better choice given the `Tech Stack` from the context file.
 - Incredibly, the model behave worst compared to the `Auto mode`.
 - It took more than 10 minutes, and it could not finish the app.
+- I tried the process the next day (when quota got refreshed). The result was similar to previous comments. The notable difference is that the model created 3 React components compared to the first attempt which created astro components only, and quota decreased ~21.5%.
+
+Stats (first attempt):
 
 <p>
 <img width="450" src="./docs/images/2152026/gemini-cli-pro-stats.png" />
+</p>
+
+Stats (second attempt):
+
+<p>
+<img width="450" src="./docs/images/2152026/gemini-cli-auto-stats-2nd-attempt.png" />
 </p>
 
 ## Claude Opus 4.5
@@ -176,6 +185,16 @@ Consider the model consumed the remaining 2/3 of the daily quota, following an i
 
 <p>
 <img width="700" src="./docs/images/2152026/gemini-cli-pro-main-view.png" />
+</p>
+
+I tried the same process after quota got refreshed.
+
+Branch: [initial-app-gemini-cli-pro-only-2nd-attempt](https://github.com/itonx/dev-toolkit-web/tree/initial-app-gemini-cli-pro-only-2nd-attempt)
+
+Result:
+
+<p>
+<img width="700" src="./docs/images/2152026/gemini-cli-pro-2nd-attempt-main-view.png" />
 </p>
 
 ## Claude Opus 4.5

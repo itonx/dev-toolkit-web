@@ -1,6 +1,6 @@
 # Dev Toolkit Web
 
-This repository provides a comparison between `Claude Opus`, `Gemini CLI` and `GPT Codex` for Web App Generation.
+This repository provides a comparison between `Claude Opus`, `Gemini` and `GPT Codex` for Web App Generation.
 
 # Details
 

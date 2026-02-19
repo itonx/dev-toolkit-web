@@ -1,1 +1,208 @@
 @import "tailwindcss";
+
+@theme {
+  --color-bg: #202833;
+  --color-accent: #24e4a7;
+  --color-surface: #2a3442;
+  --color-border: #344154;
+  --color-muted: #9fb0c2;
+  --color-sidebar: #1b222c;
+  --color-accent-disabled: rgba(36, 228, 167, 0.5);
+}
+
+/* ── Page Load: Layout Reveal ── */
+@keyframes sidebar-reveal {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes content-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes search-reveal {
+  from {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ── Tool Content Transitions ── */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-left {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+}
+
+/* ── Result / Output ── */
+@keyframes pop-in {
+  from {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes highlight-flash {
+  0% {
+    background-color: rgba(36, 228, 167, 0.15);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* ── Copy Confirmation ── */
+@keyframes check-morph {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    transform: translateY(100%) translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) translateX(-50%);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* ── Search ── */
+@keyframes typing-wave {
+  0%,
+  100% {
+    background-position: -200% 0;
+  }
+  50% {
+    background-position: 200% 0;
+  }
+}
+
+/* ── Sidebar Ripple ── */
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ── Gradient Background ── */
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ── Skeleton Shimmer ── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ── Utility classes ── */
+.sidebar-reveal {
+  animation: sidebar-reveal 0.5s ease-out both;
+}
+
+.content-reveal {
+  animation: content-reveal 0.5s ease-out 0.15s both;
+}
+
+.search-reveal {
+  animation: search-reveal 0.4s ease-out 0.35s both;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(36, 228, 167, 0.06) 50%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}

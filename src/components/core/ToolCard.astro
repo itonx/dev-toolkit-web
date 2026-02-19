@@ -1,0 +1,80 @@
+---
+interface Props {
+  title: string;
+  href: string;
+}
+
+const { title, href } = Astro.props;
+---
+
+<a href={href} class="tool-card group relative flex flex-col items-center justify-center w-full h-24 text-center text-light-muted bg-light-surface rounded-md hover:bg-light-border dark:bg-dark-surface dark:text-dark-muted dark:hover:bg-dark-border overflow-hidden transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-glow">
+  <div class="accent-bar absolute left-0 top-0 h-full w-1 bg-dark-accent origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-200 ease-out"></div>
+  <span class="group-hover:translate-x-1 group-hover:font-bold transition-all duration-200 ease-out">{title}</span>
+</a>
+
+<style>
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+  }
+
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toolCards = document.querySelectorAll('.tool-card');
+    const activeIndicator = document.createElement('span');
+    activeIndicator.classList.add('active-indicator', 'absolute', 'h-full', 'w-full', 'bg-dark-accent', 'rounded-md', 'transition-transform', 'duration-300', 'ease-in-out');
+    activeIndicator.style.zIndex = -1;
+    
+    const parent = toolCards[0].parentElement;
+    parent.style.position = 'relative';
+    parent.prepend(activeIndicator);
+
+    function setActive(card) {
+      const cardRect = card.getBoundingClientRect();
+      const parentRect = parent.getBoundingClientRect();
+      const top = card.offsetTop;
+      const left = card.offsetLeft;
+      activeIndicator.style.transform = `translate(${left}px, ${top}px)`;
+      card.classList.add('shadow-glow');
+    }
+
+    toolCards.forEach(card => {
+      if (card.getAttribute('href') === window.location.pathname) {
+        setActive(card);
+      }
+      card.addEventListener('click', (e) => {
+        const ripple = document.createElement('span');
+        const rect = card.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = `${size}px`;
+        ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+        ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+        ripple.classList.add('ripple');
+        card.appendChild(ripple);
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+        
+        e.preventDefault();
+        // remove shadow from all cards
+        toolCards.forEach(c => c.classList.remove('shadow-glow'));
+        setActive(card);
+        setTimeout(() => {
+          window.location.href = card.getAttribute('href');
+        }, 300);
+      });
+    });
+  });
+</script>

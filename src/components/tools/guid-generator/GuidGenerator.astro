@@ -1,0 +1,54 @@
+---
+---
+<div id="guid-generator">
+  <button id="generate-btn" class="bg-light-accent dark:bg-dark-accent text-white font-bold py-2 px-4 rounded shadow-glow">
+    Generate GUID
+  </button>
+  <div id="result-container" class="mt-4 result-pop-in">
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const generateBtn = document.getElementById('generate-btn');
+    const resultContainer = document.getElementById('result-container');
+
+    generateBtn.addEventListener('click', () => {
+      const guid = crypto.randomUUID();
+      resultContainer.innerHTML = `
+        <div class="relative">
+          <input type="text" readOnly value="${guid}" id="guid-input" class="w-full p-2 border rounded bg-light-surface dark:bg-dark-surface text-light-accent dark:text-dark-muted border-light-border dark:border-dark-border" />
+          <button id="copy-btn" class="absolute top-1/2 right-2 -translate-y-1/2 text-light-accent dark:text-dark-muted hover:text-light-accent dark:hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 012-2h4a2 2 0 012 2v1M8 5a2 2 0 002 2h4a2 2 0 002-2" />
+            </svg>
+            <span class="copy-tooltip absolute -top-8 -right-2 bg-gray-800 text-white text-xs rounded py-1 px-2">Copy</span>
+          </button>
+        </div>
+      `;
+
+      const copyBtn = document.getElementById('copy-btn');
+      const guidInput = document.getElementById('guid-input');
+      const copyTooltip = document.querySelector('.copy-tooltip');
+
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(guidInput.value).then(() => {
+          copyBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          `;
+          copyTooltip.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtn.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 012-2h4a2 2 0 012 2v1M8 5a2 2 0 002 2h4a2 2 0 002-2" />
+              </svg>
+            `;
+            copyTooltip.textContent = 'Copy';
+          }, 2000);
+        });
+      });
+    });
+  });
+</script>

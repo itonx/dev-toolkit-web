@@ -1,0 +1,62 @@
+---
+import ToolCard from './ToolCard.astro';
+---
+
+<aside id="sidebar" class="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-light-background border-r rtl:border-r-0 rtl:border-l dark:bg-dark-sidebar dark:border-dark-border transition-width duration-300 load-animation">
+  <button id="toggle-btn" class="text-light-accent dark:text-white focus:outline-none">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+  </button>
+  <div id="sidebar-content" class="mt-6">
+    <div class="relative">
+      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+        <svg class="w-5 h-5 text-light-muted" viewBox="0 0 24 24" fill="none">
+          <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </span>
+
+      <input type="text" class="w-full py-2 pl-10 pr-4 text-light-accent bg-light-surface border rounded-md dark:bg-dark-surface dark:text-dark-muted dark:border-dark-border focus:border-light-accent dark:focus:border-dark-accent focus:ring-dark-accent focus:ring-opacity-40 focus:outline-none focus:ring focus:shadow-glow transition-all duration-300 focus:scale-x-110 focus:scale-y-105" placeholder="Search">
+    </div>
+
+    <div class="flex flex-col justify-between flex-1 mt-6">
+      <nav class="grid grid-cols-2 gap-4">
+        <ToolCard title="GUID Generator" href="/tools/guid-generator" />
+        <ToolCard title="Base64" href="/tools/base64" />
+        <ToolCard title="JSON Formatter" href="/tools/json-formatter" />
+        <ToolCard title="QR Code Generator" href="/tools/qr-code-generator" />
+        <ToolCard title="QR Code Decoder" href="/tools/qr-code-decoder" />
+      </nav>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .load-animation {
+    animation: slide-in-left 0.5s ease-in-out;
+  }
+
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggle-btn');
+    const sidebarContent = document.getElementById('sidebar-content');
+    const mainContent = document.getElementById('main-content');
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('w-16');
+      sidebarContent.classList.toggle('hidden');
+      mainContent.classList.toggle('w-full');
+    });
+  });
+</script>

@@ -1,0 +1,114 @@
+---
+---
+<div id="base64-tool">
+  <div class="flex items-center justify-center w-full mb-4">
+    <label for="toggle" class="flex items-center cursor-pointer">
+      <div class="relative">
+        <input type="checkbox" id="toggle" class="sr-only">
+        <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+      </div>
+      <div id="mode-label" class="ml-3 text-light-accent dark:text-dark-muted font-medium">Encode</div>
+    </label>
+  </div>
+  <div class="flex flex-col space-y-4">
+    <div>
+      <label for="text-input" class="block text-sm font-medium text-light-accent dark:text-dark-muted">Input</label>
+      <textarea id="text-input" rows="4" class="w-full p-2 border rounded bg-light-surface dark:bg-dark-surface text-light-accent dark:text-dark-muted border-light-border dark:border-dark-border"></textarea>
+    </div>
+    <div>
+      <label for="file-input" class="block text-sm font-medium text-light-accent dark:text-dark-muted">File</label>
+      <input type="file" id="file-input" class="w-full text-light-accent dark:text-dark-muted">
+    </div>
+    <button id="process-btn" class="bg-light-accent dark:bg-dark-accent text-white font-bold py-2 px-4 rounded shadow-glow">
+      Encode
+    </button>
+    <div id="result-container" class="mt-4 result-pop-in">
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('toggle');
+    const modeLabel = document.getElementById('mode-label');
+    const processBtn = document.getElementById('process-btn');
+    const textInput = document.getElementById('text-input');
+    const fileInput = document.getElementById('file-input');
+    const resultContainer = document.getElementById('result-container');
+    let isEncode = true;
+
+    toggle.addEventListener('change', () => {
+      isEncode = !isEncode;
+      modeLabel.textContent = isEncode ? 'Encode' : 'Decode';
+      processBtn.textContent = isEncode ? 'Encode' : 'Decode';
+    });
+
+    function createResult(result) {
+      resultContainer.innerHTML = `
+        <div class="relative">
+          <textarea readOnly id="result-output" class="w-full p-2 border rounded bg-light-surface dark:bg-dark-surface text-light-accent dark:text-dark-muted border-light-border dark:border-dark-border" rows="4">${result}</textarea>
+          <button id="copy-btn" class="absolute top-2 right-2 text-light-accent dark:text-dark-muted hover:text-light-accent dark:hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 012-2h4a2 2 0 012 2v1M8 5a2 2 0 002 2h4a2 2 0 002-2" />
+            </svg>
+            <span class="copy-tooltip absolute -top-8 -right-2 bg-gray-800 text-white text-xs rounded py-1 px-2">Copy</span>
+          </button>
+        </div>
+      `;
+
+      const copyBtn = document.getElementById('copy-btn');
+      const resultOutput = document.getElementById('result-output');
+      const copyTooltip = document.querySelector('.copy-tooltip');
+
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(resultOutput.value).then(() => {
+          copyBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          `;
+          copyTooltip.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtn.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 012-2h4a2 2 0 012 2v1M8 5a2 2 0 002 2h4a2 2 0 002-2" />
+              </svg>
+            `;
+            copyTooltip.textContent = 'Copy';
+          }, 2000);
+        });
+      });
+    }
+
+    processBtn.addEventListener('click', () => {
+      if (isEncode) {
+        if (textInput.value) {
+          const encoded = btoa(textInput.value);
+          createResult(encoded);
+        } else if (fileInput.files.length > 0) {
+          const file = fileInput.files[0];
+          const reader = new FileReader();
+          reader.onload = () => {
+            const encoded = reader.result.split(',')[1];
+            createResult(encoded);
+          };
+          reader.readAsDataURL(file);
+        }
+      } else {
+        try {
+          const decoded = atob(textInput.value);
+          createResult(decoded);
+        } catch (error) {
+          resultContainer.innerHTML = `<div class="p-4 text-red-700 bg-red-100 border border-red-400 rounded">${error}</div>`;
+        }
+      }
+    });
+  });
+</script>
+<style>
+  #toggle:checked + .dot {
+    transform: translateX(100%);
+    background-color: #24e4a7;
+  }
+</style>

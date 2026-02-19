@@ -172,8 +172,8 @@ body {
 
 .active-indicator {
   position: absolute;
-  left: 0.2rem;
-  right: 0.2rem;
+  left: 0rem;
+  right: 0rem;
   border-radius: 0.72rem;
   background: color-mix(in srgb, var(--accent) 22%, var(--surface));
   border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
@@ -431,6 +431,13 @@ body {
   margin: 0;
   color: var(--muted);
   font-size: 0.88rem;
+}
+
+.error-meta {
+  margin: 0;
+  color: color-mix(in srgb, var(--accent) 70%, var(--muted));
+  font-size: 0.88rem;
+  font-weight: 600;
 }
 
 .skeleton-wrapper {

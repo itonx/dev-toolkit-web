@@ -1,5 +1,9 @@
 # Project: DEV Toolkit for Web
 
+# App
+
+The app name is `Code Alchemy`.
+
 ## Tech Stack
 
 - Astro

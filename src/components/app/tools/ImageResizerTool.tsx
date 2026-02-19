@@ -148,10 +148,14 @@ export default function ImageResizerTool(_: ImageResizerToolProps) {
   };
 
   return (
-    <section className={`${ui.toolCard} h-full animate-[result-pop_240ms_ease-out]`}>
+    <section
+      className={`${ui.toolCard} h-full animate-[result-pop_240ms_ease-out]`}
+    >
       <header className={ui.toolHeader}>
         <h2 className={ui.toolTitle}>Image Resizer</h2>
-        <p className={ui.toolDescription}>Resize image dimensions with optional aspect ratio lock.</p>
+        <p className={ui.toolDescription}>
+          Resize image dimensions with optional aspect ratio lock.
+        </p>
       </header>
 
       <div className={ui.uploadInline}>

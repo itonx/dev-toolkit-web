@@ -48,7 +48,9 @@ export default function Base64Tool({ onToast }: Base64ToolProps) {
     <section className={`${ui.toolCard} animate-[result-pop_240ms_ease-out]`}>
       <header className={ui.toolHeader}>
         <h2 className={ui.toolTitle}>Base64 Converter</h2>
-        <p className={ui.toolDescription}>Encode/decode text and encode files with Base64.</p>
+        <p className={ui.toolDescription}>
+          Encode/decode text and encode files with Base64.
+        </p>
       </header>
 
       <label className={ui.fieldLabel} htmlFor="base64Input">

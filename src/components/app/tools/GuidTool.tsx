@@ -31,7 +31,9 @@ export default function GuidTool({ onToast }: GuidToolProps) {
     <section className={`${ui.toolCard} animate-[result-pop_240ms_ease-out]`}>
       <header className={ui.toolHeader}>
         <h2 className={ui.toolTitle}>GUID Generator</h2>
-        <p className={ui.toolDescription}>Create RFC 4122 UUID values instantly.</p>
+        <p className={ui.toolDescription}>
+          Create RFC 4122 UUID values instantly.
+        </p>
       </header>
 
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">

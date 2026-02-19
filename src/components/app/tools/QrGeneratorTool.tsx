@@ -61,10 +61,14 @@ export default function QrGeneratorTool({ onToast }: QrGeneratorToolProps) {
   };
 
   return (
-    <section className={`${ui.toolCard} h-full animate-[result-pop_240ms_ease-out]`}>
+    <section
+      className={`${ui.toolCard} h-full animate-[result-pop_240ms_ease-out]`}
+    >
       <header className={ui.toolHeader}>
         <h2 className={ui.toolTitle}>QR Generator</h2>
-        <p className={ui.toolDescription}>Create QR images from text or links.</p>
+        <p className={ui.toolDescription}>
+          Create QR images from text or links.
+        </p>
       </header>
 
       <label className={ui.fieldLabel} htmlFor="qrInput">

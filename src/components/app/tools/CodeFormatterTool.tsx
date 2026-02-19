@@ -149,10 +149,14 @@ export default function CodeFormatterTool({
   }, [formattedCode, selectedLanguage.prism]);
 
   return (
-    <section className={`${ui.toolCard} h-full animate-[result-pop_240ms_ease-out]`}>
+    <section
+      className={`${ui.toolCard} h-full animate-[result-pop_240ms_ease-out]`}
+    >
       <header className={ui.toolHeader}>
         <h2 className={ui.toolTitle}>Code Formatter</h2>
-        <p className={ui.toolDescription}>Format source code with language-aware rules.</p>
+        <p className={ui.toolDescription}>
+          Format source code with language-aware rules.
+        </p>
       </header>
 
       <div className="relative z-[6] flex items-center gap-2">

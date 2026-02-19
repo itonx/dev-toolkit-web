@@ -67,10 +67,14 @@ export default function PasswordGeneratorTool({
   };
 
   return (
-    <section className={`${ui.toolCard} h-full animate-[result-pop_240ms_ease-out]`}>
+    <section
+      className={`${ui.toolCard} h-full animate-[result-pop_240ms_ease-out]`}
+    >
       <header className={ui.toolHeader}>
         <h2 className={ui.toolTitle}>Password Generator</h2>
-        <p className={ui.toolDescription}>Generate secure random passwords with custom rules.</p>
+        <p className={ui.toolDescription}>
+          Generate secure random passwords with custom rules.
+        </p>
       </header>
 
       <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">

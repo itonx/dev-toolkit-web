@@ -9,7 +9,8 @@ export const ui = {
   toolCard:
     "w-full min-w-0 rounded-2xl border border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_90%,var(--bg))] p-4 flex flex-col gap-3",
   toolHeader: "space-y-1",
-  toolTitle: "m-0 text-2xl font-bold text-[color-mix(in_srgb,var(--accent)_58%,var(--muted))]",
+  toolTitle:
+    "m-0 text-2xl font-bold text-[color-mix(in_srgb,var(--accent)_58%,var(--muted))]",
   toolDescription: "m-0 text-[var(--muted)]",
   fieldLabel:
     "text-xs font-semibold uppercase tracking-wide text-[var(--muted)]",

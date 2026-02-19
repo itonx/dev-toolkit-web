@@ -319,7 +319,11 @@ export default function Sidebar({
                 ref={(node) => {
                   itemRefs.current[tool.key] = node;
                 }}
-                className={`relative flex items-center gap-2 overflow-visible rounded-xl border-0 bg-transparent px-3 py-3 text-left font-semibold text-[color-mix(in_srgb,var(--accent)_28%,var(--muted))] transition ${activeTool === tool.key ? "scale-[1.03] text-[var(--accent)]" : "hover:-translate-y-0.5 hover:text-[var(--accent)]"} ${isDesktopCollapsed ? "justify-center" : ""}`}
+                className={`group relative flex items-center gap-2 overflow-visible rounded-xl border-0 bg-transparent px-3 py-3 text-left font-semibold text-[color-mix(in_srgb,var(--accent)_28%,var(--muted))] transition-all duration-200 ease-out active:scale-[0.97] ${
+                  activeTool === tool.key
+                    ? "scale-[1.03] text-[var(--accent)] brightness-105"
+                    : "hover:-translate-y-0.5 hover:text-[var(--accent)] hover:brightness-105 hover:shadow-[0_0_0_1px_color-mix(in_srgb,var(--accent)_18%,transparent),0_10px_20px_color-mix(in_srgb,var(--accent)_12%,transparent)]"
+                } ${isDesktopCollapsed ? "justify-center" : ""}`}
                 onClick={() => {
                   onToolChange(tool.key);
                   if (isMobile) {
@@ -328,8 +332,15 @@ export default function Sidebar({
                 }}
                 title={isDesktopCollapsed ? tool.label : undefined}
               >
-                <Icon icon={tool.icon} width="18" />
-                {!isDesktopCollapsed ? <span>{tool.label}</span> : null}
+                <span className="absolute left-0 top-1/2 h-0 w-[2px] -translate-y-1/2 bg-[var(--accent)] transition-all duration-200 ease-out group-hover:min-h-2/4" />
+                <span className="inline-flex transition-transform duration-200 ease-out group-hover:rotate-[5deg] group-hover:scale-110">
+                  <Icon icon={tool.icon} width="18" />
+                </span>
+                {!isDesktopCollapsed ? (
+                  <span className="transition-all duration-200 ease-out group-hover:translate-x-1.5 group-hover:font-bold">
+                    {tool.label}
+                  </span>
+                ) : null}
               </button>
             ))}
           </div>

@@ -294,9 +294,9 @@ export default function Sidebar({
         <div
           className={`flex min-h-0 flex-1 flex-col gap-3 ${
             isMobile
-              ? "absolute left-[0.65rem] right-[0.65rem] top-[calc(100%+0.3rem)] z-[12] hidden max-h-[calc(100dvh-4.4rem)] min-h-[calc(100dvh-4.8rem)] rounded-2xl border border-[var(--border)] bg-[var(--sidebar)] p-2 shadow-[0_18px_28px_color-mix(in_srgb,var(--accent)_12%,transparent)]"
+              ? `absolute left-[0.65rem] right-[0.65rem] top-[calc(100%+0.3rem)] z-[12] max-h-[calc(100dvh-4.4rem)] min-h-[calc(100dvh-4.8rem)] rounded-2xl border border-[var(--border)] bg-[var(--sidebar)] p-2 shadow-[0_18px_28px_color-mix(in_srgb,var(--accent)_12%,transparent)] ${mobileToolsOpen ? "flex" : "hidden"}`
               : ""
-          } ${isMobile && mobileToolsOpen ? "flex" : ""}`}
+          }`}
         >
           <div
             className="relative flex min-h-0 flex-1 flex-col gap-2 overflow-x-hidden overflow-y-auto p-1"

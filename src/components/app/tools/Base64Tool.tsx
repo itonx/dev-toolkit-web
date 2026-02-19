@@ -89,11 +89,6 @@ export default function Base64Tool({ onToast }: Base64ToolProps) {
           type="file"
           onChange={(event) => void handleFileEncode(event)}
         />
-        <CopyButton
-          value={resultValue}
-          onCopied={onToast}
-          disabled={!resultValue}
-        />
       </div>
 
       {selectedFileName ? (
@@ -101,9 +96,16 @@ export default function Base64Tool({ onToast }: Base64ToolProps) {
       ) : null}
       {errorText ? <p className="error-meta">{errorText}</p> : null}
 
-      <label className="field-label" htmlFor="base64Output">
-        Output
-      </label>
+      <div className="output-head">
+        <label className="field-label" htmlFor="base64Output">
+          Output
+        </label>
+        <CopyButton
+          value={resultValue}
+          onCopied={onToast}
+          disabled={!resultValue}
+        />
+      </div>
       <textarea
         id="base64Output"
         className="result-area"

@@ -11,7 +11,11 @@ type MinifierToolProps = {
 
 type MinifierMode = "javascript" | "html" | "css" | "xml" | "sql" | "json";
 
-const minifyXml = (value: string) => value.replace(/>\s+</g, "><").replace(/\s{2,}/g, " ").trim();
+const minifyXml = (value: string) =>
+  value
+    .replace(/>\s+</g, "><")
+    .replace(/\s{2,}/g, " ")
+    .trim();
 
 const minifySql = (value: string) =>
   value
@@ -92,7 +96,11 @@ export default function MinifierTool({ theme, onToast }: MinifierToolProps) {
       </header>
 
       <div className="formatter-controls stagger-2">
-        <select className="compact-input minifier-select" value={mode} onChange={(event) => setMode(event.target.value as MinifierMode)}>
+        <select
+          className="compact-input minifier-select"
+          value={mode}
+          onChange={(event) => setMode(event.target.value as MinifierMode)}
+        >
           <option value="javascript">JavaScript</option>
           <option value="html">HTML</option>
           <option value="css">CSS</option>
@@ -101,7 +109,11 @@ export default function MinifierTool({ theme, onToast }: MinifierToolProps) {
           <option value="json">JSON</option>
         </select>
 
-        <button type="button" className="action-button primary" onClick={() => void runMinify()}>
+        <button
+          type="button"
+          className="action-button primary"
+          onClick={() => void runMinify()}
+        >
           <Icon icon="tabler:arrows-minimize" width="16" />
           Minify
         </button>

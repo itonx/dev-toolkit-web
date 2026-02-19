@@ -9,5 +9,5 @@ export const tools: ToolItem[] = [
   { key: "formatter", label: "Code Formatter", icon: "tabler:brackets-angle" },
   { key: "qr", label: "QR Generator", icon: "tabler:qrcode" },
   { key: "minifier", label: "Code Minifier", icon: "tabler:arrows-minimize" },
-  { key: "password", label: "Password Generator", icon: "tabler:key" }
+  { key: "password", label: "Password Generator", icon: "tabler:key" },
 ];

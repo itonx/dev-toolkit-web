@@ -13,7 +13,8 @@ const DIGITS = "0123456789";
 const SYMBOLS = "!@#$%^&*()_+-={}[]:;,.?";
 
 const pickRandomChar = (charset: string) => {
-  const randomIndex = crypto.getRandomValues(new Uint32Array(1))[0] % charset.length;
+  const randomIndex =
+    crypto.getRandomValues(new Uint32Array(1))[0] % charset.length;
   return charset[randomIndex];
 };
 
@@ -25,7 +26,9 @@ const generatePassword = (length: number, charset: string) => {
   return chars.join("");
 };
 
-export default function PasswordGeneratorTool({ onToast }: PasswordGeneratorToolProps) {
+export default function PasswordGeneratorTool({
+  onToast,
+}: PasswordGeneratorToolProps) {
   const [length, setLength] = useState(12);
   const [count, setCount] = useState(1);
   const [useLowercase, setUseLowercase] = useState(true);
@@ -101,28 +104,48 @@ export default function PasswordGeneratorTool({ onToast }: PasswordGeneratorTool
         </div>
 
         <label className="check-row check-card">
-          <input type="checkbox" checked={useLowercase} onChange={(event) => setUseLowercase(event.target.checked)} />
+          <input
+            type="checkbox"
+            checked={useLowercase}
+            onChange={(event) => setUseLowercase(event.target.checked)}
+          />
           Lowercase
         </label>
 
         <label className="check-row check-card">
-          <input type="checkbox" checked={useUppercase} onChange={(event) => setUseUppercase(event.target.checked)} />
+          <input
+            type="checkbox"
+            checked={useUppercase}
+            onChange={(event) => setUseUppercase(event.target.checked)}
+          />
           Uppercase
         </label>
 
         <label className="check-row check-card">
-          <input type="checkbox" checked={useDigits} onChange={(event) => setUseDigits(event.target.checked)} />
+          <input
+            type="checkbox"
+            checked={useDigits}
+            onChange={(event) => setUseDigits(event.target.checked)}
+          />
           Digits
         </label>
 
         <label className="check-row check-card">
-          <input type="checkbox" checked={useSymbols} onChange={(event) => setUseSymbols(event.target.checked)} />
+          <input
+            type="checkbox"
+            checked={useSymbols}
+            onChange={(event) => setUseSymbols(event.target.checked)}
+          />
           Symbols
         </label>
       </div>
 
       <div className="tool-actions stagger-3">
-        <button type="button" className="action-button primary" onClick={handleGenerate}>
+        <button
+          type="button"
+          className="action-button primary"
+          onClick={handleGenerate}
+        >
           <Icon icon="tabler:key" width="16" />
           Generate Passwords
         </button>

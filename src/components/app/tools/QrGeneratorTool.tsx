@@ -50,11 +50,19 @@ export default function QrGeneratorTool({ onToast }: QrGeneratorToolProps) {
       />
 
       <div className="tool-actions stagger-4">
-        <button type="button" className="action-button primary" onClick={() => void generateQr()}>
+        <button
+          type="button"
+          className="action-button primary"
+          onClick={() => void generateQr()}
+        >
           <Icon icon="tabler:qrcode" width="16" />
           Generate QR
         </button>
-        <CopyButton value={inputValue} onCopied={onToast} disabled={!inputValue} />
+        <CopyButton
+          value={inputValue}
+          onCopied={onToast}
+          disabled={!inputValue}
+        />
       </div>
 
       {errorText ? <p className="error-meta">{errorText}</p> : null}
